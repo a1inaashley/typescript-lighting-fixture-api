@@ -13,7 +13,7 @@ This project is a **Light Control API** built using Node.js and Express. It prov
 
 ## Getting Started
 
-### Prerequisites
+### Essential
 
 Ensure you have the following installed:
 
@@ -26,7 +26,7 @@ Ensure you have the following installed:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/light-control-api.git
+    git clone https://github.com/a1inaashley/typescript-lighting-fixture-api.git
     cd light-control-api
     ```
 
@@ -56,7 +56,7 @@ Ensure you have the following installed:
 
   `POST /login`
 
-  Handles user login. If `LOGIN_REQUIRED` is set to `false` in the environment, the endpoint will return a success message without requiring credentials.
+  Handles user login. If `LOGIN_REQUIRED` is set to `false` in the environment, the `endpoint` will return a success message without requiring credentials.
 
   Request Body:
   ```json
@@ -71,44 +71,67 @@ Ensure you have the following installed:
 
 - **Endpoint:** `GET /lights`
 - **Description:** Returns a list of all lights.
-
+  ```json 
+  [
+    { "id": 1, "name": "Living Room Light", "status": "off" },
+    { "id": 2, "name": "Kitchen Light", "status": "on" }
+  ]
+  
 ### Get Light Details
 
 - **Endpoint:** `GET /lights/:id`
-- **Description:** Returns details of a specific light by its ID.
+- **Description:** Returns details of a `specific` light by its `ID`.
 - **Path Parameters:**
-  - `id` (number): The ID of the light.
-
+  - `id` (number): The `ID` of the light.
+  ```json
+  {
+    "id": 1,
+    "name": "Random Fixture",
+    "status": "off",
+    "brightness": 70,
+    "color": "white"
+  }
 ### Turn On Light
 
 - **Endpoint:** `POST /lights/:id/on`
-- **Description:** Turns on the specified light by its ID.
+- **Description:** Turns on the specified light by its `ID`.
 - **Path Parameters:**
   - `id` (number): The ID of the light.
-
+  ```json
+  {
+    "id": 1,
+    "status": "on"
+  }
 ### Turn Off Light
 
 - **Endpoint:** `POST /lights/:id/off`
-- **Description:** Turns off the specified light by its ID.
+- **Description:** Turns off the specified light by its `ID`.
 - **Path Parameters:**
-  - `id` (number): The ID of the light.
-
+  - `id` (number): The `ID` of the light.
+  ```json
+  {
+    "id": 1,
+    "status": "off"
+  }
+  ```
 ### Set Brightness
 
 - **Endpoint:** `POST /lights/:id/brightness`
-- **Description:** Sets the brightness of the specified light by its ID.
+- **Description:** Sets the brightness of the specified light by its `ID`.
 - **Path Parameters:**
-  - `id` (number): The ID of the light.
+  - `id` (number): The `ID` of the light.
 - **Request Body:**
-  ```json
-  {
-    "brightness": 75
-  }
-
-  **Request Body Parameters:**
-
  - ```brightness (number):``` The desired brightness level (0-100).
-##
+   ```json
+   {
+     "brightness": 75
+   }
+- **Response Body**
+   ```json
+   {
+     "id": 1,
+     "brightness": 75
+   }
  ## Error Handling
 
 All errors are returned with an appropriate ```HTTP``` status code and a ```JSON``` object containing an error message.
